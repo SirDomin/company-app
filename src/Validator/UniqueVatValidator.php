@@ -28,8 +28,6 @@ class UniqueVatValidator extends ConstraintValidator
         /** @var Company|null $currentCompany */
         $currentCompany = $this->context->getObject();
 
-        dd($existingCompany);
-
         if ($existingCompany && $currentCompany instanceof Company && $existingCompany->getId() !== $currentCompany->getId()) {
             $this->context->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $value)

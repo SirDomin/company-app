@@ -53,27 +53,31 @@
 - `Assert\NotBlank` – Zapewnia, że pole nie jest puste.
 
 ### **📌 Customowe Walidatory**
-- **`UniqueVatValidator`**
+- **[UniqueVatValidator](https://github.com/SirDomin/company-app/blob/master/src/Validator/UniqueVatValidator.php)**
    - Sprawdza, czy numer VAT jest unikalny.
-- **`UniqueEmailValidator`**
+- **[UniqueEmailValidator](https://github.com/SirDomin/company-app/blob/master/src/Validator/UniqueEmailValidator.php)**
    - Sprawdza, czy email jest unikalny.
 
 ---
 
 ## 🚨 **Obsługa Wyjątków (Custom Exceptions)**
-- **`InvalidFieldsException`** – Błąd (400), z podanymi polami oraz ich opisami, umożliwia łatwą obsługę błędu po stronie frontendu. 
+- **[InvalidFieldsException](https://github.com/SirDomin/company-app/blob/master/src/Exception/InvalidFieldsException.php)** – Błąd (400), z podanymi polami oraz ich opisami, umożliwia łatwą obsługę błędu po stronie frontendu. 
 
 ---
 
 ## 🏭 **Wykorzystanie Wzorców Projektowych**
 
 ### **🔹 Fabryki (Factory)**
-- **`CompanyFactory`** – Tworzy nowe obiekty `Company`.
-- **`EmployeeFactory`** – Tworzy nowe obiekty `Employee`.
+- **[CompanyFactory](https://github.com/SirDomin/company-app/blob/master/src/Factory/CompanyFactory.php)**
+  - Tworzy nowe obiekty [Company](https://github.com/SirDomin/company-app/blob/master/src/Entity/Company.php).
+- **[EmployeeFactory](https://github.com/SirDomin/company-app/blob/master/src/Factory/EmployeeFactory.php)**
+  - Tworzy nowe obiekty [Employee](https://github.com/SirDomin/company-app/blob/master/src/Entity/Employee.php).
 
 ### **🔹 Repozytoria (Repository)**
-- **`CompanyRepository`** – Zapewnia interakcję z bazą danych dla encji `Company`.
-- **`EmployeeRepository`** – Obsługuje zapytania do bazy dla encji `Employee`.
+- **[CompanyRepository](https://github.com/SirDomin/company-app/blob/master/src/Repository/CompanyRepository.php)**
+  - Zapewnia interakcję z bazą danych dla encji [Company](https://github.com/SirDomin/company-app/blob/master/src/Entity/Company.php).
+- **[EmployeeRepository](https://github.com/SirDomin/company-app/blob/master/src/Repository/EmployeeRepository.php)**
+  - Zapewnia interakcję z bazą danych dla encji [Employee](https://github.com/SirDomin/company-app/blob/master/src/Entity/Employee.php).
 
 ---
 
@@ -81,6 +85,10 @@
 
 ### **📌 Pokrycie Testami**
 - **Testy funkcjonalne** dla całego procesu dodawania, edycji i usuwania firm i pracowników.
+  - **[CompanyTest](https://github.com/SirDomin/company-app/blob/master/tests/App/Tests/CompanyTest.php)**
+    - Przetestowanie funkcjonalności CRUD oraz zwracanych danych [CompanyController](https://github.com/SirDomin/company-app/blob/master/src/Controller/CompanyController.php).
+  - **[EmployeeTest](https://github.com/SirDomin/company-app/blob/master/tests/App/Tests/EmployeeTest.php)**
+    - Przetestowanie funkcjonalności CRUD oraz zwracanych danych [EmployeeController](https://github.com/SirDomin/company-app/blob/master/src/Controller/EmployeeController.php).
 
 ---
 

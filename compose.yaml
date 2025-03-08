@@ -22,7 +22,7 @@ services:
     ports:
       # HTTP
       - target: 80
-        published: ${HTTP_PORT:-8089}
+        published: ${HTTP_PORT:-98}
         protocol: tcp
       # HTTPS
       - target: 443
