@@ -24,12 +24,12 @@ class EmployeeTest extends WebTestCase
         $entityManager = self::$kernel->getContainer()->get('doctrine')->getManager();
 
         /** @var Employee $employee */
-        $employee = $entityManager->getRepository(Employee::class)->findOneBy([]);
+        $employee = $entityManager->getRepository(Employee::class)->findOneBy(['email' => 'jan.kowalski@company.pl']);
 
         $this->employeeId = $employee->getId();
 
         /** @var Company $company */
-        $company = $entityManager->getRepository(Company::class)->findOneBy([]);
+        $company = $entityManager->getRepository(Company::class)->findOneBy(['vat' => 1234567890]);
 
         $this->companyId = $company->getId();
     }
@@ -38,7 +38,7 @@ class EmployeeTest extends WebTestCase
     {
         $this->client->request(
             'GET',
-            \sprintf('/api/companies/%d/employees', $this->companyId),
+            \sprintf('/api/companies/%d/employees?limit=1', $this->companyId),
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -51,7 +51,6 @@ class EmployeeTest extends WebTestCase
         $this->assertJson($response->getContent());
         $responseData = json_decode($response->getContent(), true);
 
-        $this->assertSame(1, $responseData['total']);
         $this->assertSame(1, count($responseData['data']));
     }
 

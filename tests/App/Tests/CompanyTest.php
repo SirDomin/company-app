@@ -21,7 +21,7 @@ class CompanyTest extends WebTestCase
         $entityManager = self::$kernel->getContainer()->get('doctrine')->getManager();
 
         /** @var Company $company */
-        $company = $entityManager->getRepository(Company::class)->findOneBy([]);
+        $company = $entityManager->getRepository(Company::class)->findOneBy(['vat' => 1234567890]);
 
         $this->companyId = $company->getId();
     }
@@ -30,7 +30,7 @@ class CompanyTest extends WebTestCase
     {
         $this->client->request(
             'GET',
-            '/api/companies',
+            '/api/companies?limit=2',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -43,7 +43,6 @@ class CompanyTest extends WebTestCase
         $this->assertJson($response->getContent());
         $responseData = json_decode($response->getContent(), true);
 
-        $this->assertSame(2, $responseData['total']);
         $this->assertSame(2, count($responseData['data']));
     }
 

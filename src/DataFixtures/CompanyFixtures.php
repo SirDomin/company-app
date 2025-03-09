@@ -18,7 +18,18 @@ class CompanyFixtures extends Fixture
         $companyData = [
             ['name' => 'Company One', 'vat' => 1234567890, 'address' => 'Address One', 'city' => 'City', 'postCode' => '00-000'],
             ['name' => 'Company Two', 'vat' => 1234567891, 'address' => 'Address Two', 'city' => 'City 2', 'postCode' => '00-001'],
+            ['name' => 'Huge Company', 'vat' => 1234567899, 'address' => 'World', 'city' => 'Unknown', 'postCode' => '00-001'],
         ];
+
+        for ($i = 1; $i <= 11; $i++) {
+            $companyData[] = [
+                'name' => "Company $i",
+                'vat' => 1234567800 + $i,
+                'address' => "Address $i",
+                'city' => "City $i",
+                'postCode' => sprintf("00-%03d", $i),
+            ];
+        }
 
         foreach ($companyData as $key => $data) {
             $company = $this->companyFactory->createFromArray($data);

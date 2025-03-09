@@ -47,7 +47,7 @@ class CompanyRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('c');
 
         if ($search) {
-            $queryBuilder->andWhere('c.name LIKE :search OR c.vat LIKE :search')
+            $queryBuilder->andWhere('c.name LIKE :search')
                 ->setParameter('search', '%'.$search.'%');
         }
 
@@ -60,7 +60,7 @@ class CompanyRepository extends ServiceEntityRepository
         return [
             'data' => $queryBuilder->getQuery()->getResult(),
             'total' => $maxResultCount,
-            'pages' => round($maxResultCount / $limit),
+            'pages' => ceil($maxResultCount / $limit),
         ];
     }
 
@@ -70,7 +70,7 @@ class CompanyRepository extends ServiceEntityRepository
             ->select('COUNT(c.id)');
 
         if ($search) {
-            $queryBuilder->andWhere('c.name LIKE :search OR c.vat LIKE :search')
+            $queryBuilder->andWhere('c.name LIKE :search')
                 ->setParameter('search', '%'.$search.'%');
         }
 

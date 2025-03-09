@@ -69,7 +69,7 @@ class EmployeeRepository extends ServiceEntityRepository
         return [
             'data' => $queryBuilder->getQuery()->getResult(),
             'total' => $maxResultCount,
-            'pages' => round($maxResultCount / $limit),
+            'pages' => ceil($maxResultCount / $limit),
         ];
     }
 
